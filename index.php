@@ -10,7 +10,7 @@
     <div class="main">
         
         <div class="container">
-            <form action="" method="post">
+            <form action="viajes.php" method="post">
                 <div class="car-body">
                     <div class="mb-2" aria-placeholder="origen">
                         <label for="origen">Origen: </label>

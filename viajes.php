@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?php require_once 'head.html'?>
     
     <div class="container">
 
-        <div class="card">
+        <div class="card mb-2">
+            <a href="#">
+                <div class="card-body">
+                <h3>Viaje 1</h3>
+                </div>
+            </a>
+        </div>
 
+        <div class="card">
+            <div class="card-body">
+            <h3>Viaje 2</h3>
+            </div>
         </div>
 
     </div>

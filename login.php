@@ -1,5 +1,5 @@
 <?php
 $usuario = "root";
-$password = "admin";
+$password = "";
 
-$pdo = new PDO("mysql:host=localhost;dbname=dbventapasajes", $usuario, $password);
+$pdo = new PDO("mysql:host=localhost;dbname=ventaboletos", $usuario, $password);
