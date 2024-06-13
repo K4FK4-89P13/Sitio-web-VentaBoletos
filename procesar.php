@@ -58,6 +58,8 @@ require_once './login.php';
 
                         //header("Location: viajes.php");
 
+                        break;
+
                     case 'registrar_buses':
                         $placa = $_POST['placa'];
                         $modelo = $_POST['modelo'];
@@ -73,6 +75,45 @@ require_once './login.php';
 
                         echo "Datos registrados correctamente";
                         header("Location: administrador.php");
+
+                        break;
+
+                    case 'registrar_conductores';
+
+                        $nombre = $_POST['nombre'];
+                        $licencia = $_POST['licencia'];
+                        $telefono = $_POST['telefono'];
+
+                        $query = "INSERT INTO conductores (nombre, licencia, telefono) VALUES (:nombre, :licencia, :telefono)";
+
+                        $pdo->prepare($query)->execute([
+                            'nombre' => $nombre,
+                            'licencia' => $licencia,
+                            'telefono' => $telefono
+                        ]);
+
+                        header("Location: administrador.php");
+                        break;
+
+                    case 'registrar_horarios';
+                        $ruta_id = $_POST['id_ruta'];
+                        $bus_id = $_POST['id_bus'];
+                        $conductor_id = $_POST['id_conductor'];
+                        $fecha = $_POST['fecha'];
+                        $hora = $_POST['hora'];
+
+                        $query = "INSERT INTO horarios (fk_ruta, fk_bus, fk_conductor, fecha, hora) VALUES (:id_ruta, :id_bus, :id_conductor, :fecha, :hora)";
+
+                        $pdo->prepare($query)->execute([
+                            'id_ruta' => $ruta_id,
+                            'id_bus' => $bus_id,
+                            'id_conductor' => $conductor_id,
+                            'fecha' => $fecha,
+                            'hora' => $hora
+                        ]);
+
+                        header("Location: administrador.php");
+                        break;
                     
                     default:
                         echo "Ninguna coincidencia";

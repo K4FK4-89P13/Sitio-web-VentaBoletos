@@ -7,7 +7,7 @@
         <?php foreach ($datos as $fila) { ?>
             
             <div class="card mb-2">
-                <a href="#">
+                <a href="./seleccionAsientos.php">
                     <div class="card-body">
                     <h4>Origen: <?=$fila['origen']?></h4>
                     <h4>Destino: <?=$fila['destino']?></h4>

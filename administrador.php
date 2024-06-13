@@ -9,7 +9,9 @@ if (!isset($_SESSION['dni'])){
 ?>
 
 
-    <?php include_once './head.html' ?>
+    <?php include_once './head.html';
+        include_once 'login.php';
+    ?>
     <div class="navegador">
         
         <a href="logout.php">cerrar sesion</a>
@@ -133,6 +135,81 @@ if (!isset($_SESSION['dni'])){
                     <input type="submit" value="Registrar" class="btn btn-primary">
                 </form>
 
+            </div>
+        </div>
+
+        <div class="card mb-5">
+            <div class="card-body">
+
+                <h2>Registrar Horarios</h2>
+
+                <form action="procesar.php" method="post">
+                    <input type="hidden" name="formulario" value="registrar_horarios">
+
+                    <div class="mb-2">
+                        <label for="id_ruta" class="form-label">Ruta (ID)</label>
+                        <select name="id_ruta" id="id_ruta" class="form-control">
+                            <?php 
+                                $select_rutas = "SELECT * FROM rutas";
+                                $rutas = $pdo->prepare($select_rutas);
+                                $rutas->execute();
+                                $data_rutas = $rutas->fetchAll(PDO::FETCH_ASSOC);
+
+                                foreach ($data_rutas as $fila){
+                                    echo "<option value='{$fila['id_ruta']}'>{$fila['origen']}, {$fila['destino']}</option>";
+                                }
+                            ?>
+
+                        </select>
+                        <!-- <input type="number" name="id_ruta" id="id_ruta" class="form-control"> -->
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="id_bus" class="form-label">Bus (ID)</label>
+                        <select name="id_bus" id="id_bus" class="form-control">
+                            <?php
+                                $select_bus = "SELECT * FROM buses";
+                                $buses = $pdo->prepare($select_bus);
+                                $buses->execute();
+                                $data_bus = $buses->fetchAll(PDO::FETCH_ASSOC);
+
+                                foreach ($data_bus as $fila) {
+                                    echo "<option value='{$fila['id_bus']}'>{$fila['placa']}, {$fila['modelo']}</option>";
+                                }
+                            ?>
+                        </select>
+                        <!-- <input type="number" name="id_bus" id="id_bus" class="form-control"> -->
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="id_conductor" class="form-label">Conductor (ID)</label>
+                        <select name="id_conductor" id="id_conductor" class="form-control">
+                            <?php
+                                $select_conductor = "SELECT * FROM conductores";
+                                $conductores = $pdo->prepare($select_conductor);
+                                $conductores->execute();
+                                $data_conductores = $conductores->fetchAll(PDO::FETCH_ASSOC);
+
+                                foreach ($data_conductores as $fila) {
+                                    echo "<option value='{$fila['id_conductor']}'>{$fila['nombre']}, {$fila['licencia']}</option>";
+                                }
+                            ?>
+                        </select>
+                        <!-- <input type="number" name="id_conductor" id="id_conductor" class="form-control"> -->
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="hora" class="form-label">Hora</label>
+                        <input type="time" name="hora" id="hora" class="form-control">
+                    </div>
+
+                    <input type="submit" value="Registrar" class="btn btn-primary">
+                </form>
             </div>
         </div>
 
