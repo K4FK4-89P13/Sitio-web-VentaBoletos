@@ -22,7 +22,9 @@ if (!isset($_SESSION['dni'])){
             <div class="card-body">
 
                 <h2>Registrar Pasajeros</h2>
-                <!-- <form action="" method="post">
+                <form action="procesar.php" method="post">
+                    <input type="hidden" name="formulario" value="registrar_pasajeros">
+
                     <div class="mb-2">
                         <label for="nombreCompleto" class="form-label">Nombre completo</label>
                         <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control">
@@ -44,16 +46,17 @@ if (!isset($_SESSION['dni'])){
                     </div>
 
                     <input type="submit" value="Registrar" class="btn btn-primary">
-                </form> -->
+                </form>
 
             </div>
         </div>
 
-        <div class="card">
+        <div class="card mb-5">
             <div class="card-body">
 
                 <h2>Registrar Rutas</h2>
-                <form action="administrador.php" method="post">
+                <form action="procesar.php" method="post">
+                    <input type="hidden" name="formulario" value="registrar_rutas">
 
                     <div class="mb-2">
                         <label for="origen" class ="form-label">Origen</label>
@@ -66,7 +69,7 @@ if (!isset($_SESSION['dni'])){
                     </div>
 
                     <div class="mb-2">
-                        <label for="duracion" class="form-label">Duracion</label>
+                        <label for="duracion" class="form-label">Duracion (hh:mm)</label>
                         <input type="time" name="duracion" id="duracion" class="form-control">
                     </div>
 
@@ -76,12 +79,64 @@ if (!isset($_SESSION['dni'])){
             </div>
         </div>
 
+        <div class="card mb-5">
+            <div class="card-body">
+
+                <h2>Registrar Buses</h2>
+                <form action="procesar.php" method="post">
+                    <input type="hidden" name="formulario" value="registrar_buses">
+
+                    <div class="mb-2">
+                        <label for="placa" class="form-label">Placa</label>
+                        <input type="text" name="placa" id="placa" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" name="modelo" id="modelo" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="capacidad" class="form-label">Capacidad</label>
+                        <input type="number" name="capacidad" id="capacidad" class="form-control">
+                    </div>
+
+                    <input type="submit" value="Registrar" class="btn btn-primary">
+                </form>
+
+            </div>
+        </div>
+
+        <div class="card mb-5">
+            <div class="card-body">
+
+                <h2>Registrar Conductores</h2>
+
+                <form action="procesar.php" method="post">
+                    <input type="hidden" name="formulario" value="registrar_conductores">
+
+                    <div class="mb-2">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="licencia" class="form-label">Licencia</label>
+                        <input type="text" name="licencia" id="licencia" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="telefono" class="form-label">Telefono</label>
+                        <input type="tel" name="telefono" id="telefono" class="form-control">
+                    </div>
+
+                    <input type="submit" value="Registrar" class="btn btn-primary">
+                </form>
+
+            </div>
+        </div>
+
     </div>
 
-    <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'post'){
-            echo $_POST['duracion'];
-        }
-    ?>
 </body>
 </html>
