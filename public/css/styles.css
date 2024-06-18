@@ -1,0 +1,4 @@
+.dropdown-menu {
+    right: 0; /* Asegura que el menú se alinee correctamente */
+    left: auto; /* Desactiva el valor izquierdo para prevenir desbordamiento */
+}

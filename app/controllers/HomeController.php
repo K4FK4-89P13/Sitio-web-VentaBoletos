@@ -8,8 +8,7 @@ class HomeController extends Controller {
         $ciudad = $ciudadModel->get_rutas();
         $data = [
             'title' => 'INICIO',
-            'ciudades' => $ciudad,
-            'result' => []
+            'ciudades' => $ciudad
         ];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['origen'])) {

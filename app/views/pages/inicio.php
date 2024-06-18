@@ -4,7 +4,7 @@
         
         <div class="container mb-5">
 
-            <form action="" method="post">
+            <form action="http://proyecto.test/home/index" method="post">
                 <input type="hidden" name="formulario" value="buscar_rutas">
 
                 <div class="car-body">
@@ -39,8 +39,8 @@
         <!-- resultados de la busqueda -->
         <div class="container">
             <?php if (isset($data['result'])){ ?>
+                
                 <h2>Resultados de la Búsqueda</h2>
-
                 <?php if (!empty($data['result'])) { ?>
                     
                     <?php foreach ($data['result'] as $fila) { ?>
@@ -53,14 +53,14 @@
                                 <h4>Salida: <?=$fila['hora_salida']?></h4>
                                 <h4>Llegada: <?=$fila['hora_llegada']?></h4>
                                 <h4>Duración: <?=$fila['duracion']?></h4>
-                                <a href="./seleccionAsientos.php" class="btn btn-primary">Seleccionar</a>
+                                <a href="http://proyecto.test/seating/index" class="btn btn-primary">Seleccionar</a>
                             </div>
                         </div>
                     <?php }
 
                  
                 } else echo "<p>No se encontraron rutas</p>";
-            } else echo "No se encontro el resultado"?>
+            }?>
         </div>
 
     </div>
