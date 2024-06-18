@@ -57,17 +57,37 @@ if (!isset($_SESSION['dni'])){
             <div class="card-body">
 
                 <h2>Registrar Rutas</h2>
+
+                <?php
+                    $query = "SELECT * FROM ciudades";
+                    $ciudades = $pdo->prepare($query);
+                    $ciudades->execute();
+                    $data_ciudad = $ciudades->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+
                 <form action="procesar.php" method="post">
                     <input type="hidden" name="formulario" value="registrar_rutas">
 
                     <div class="mb-2">
                         <label for="origen" class ="form-label">Origen</label>
-                        <input type="text" name="origen" id="origen" class="form-control">
+                        <select name="origen" id="origen" class="form-control">Origen(ID)
+                        <?php
+                            foreach ($data_ciudad as $fila) {
+                                echo "<option value='{$fila['id']}'>{$fila['nombre']}, {$fila['region']}</option>";
+                            }
+                        ?>
+                        </select>
                     </div>
 
                     <div class="mb-2">
                         <label for="destino" class ="form-label">Destino</label>
-                        <input type="text" name="destino" id="destino" class="form-control">
+                        <select name="destino" id="destino" class="form-control">Destino(ID)
+                        <?php
+                            foreach ($data_ciudad as $fila) {
+                                echo "<option value='{$fila['id']}'>{$fila['nombre']}, {$fila['region']}</option>";
+                            }
+                        ?>
+                        </select>
                     </div>
 
                     <div class="mb-2">
@@ -150,13 +170,17 @@ if (!isset($_SESSION['dni'])){
                         <label for="id_ruta" class="form-label">Ruta (ID)</label>
                         <select name="id_ruta" id="id_ruta" class="form-control">
                             <?php 
-                                $select_rutas = "SELECT * FROM rutas";
+                                $select_rutas = "SELECT rutas.id, origen.nombre AS ciudad_origen, destino.nombre AS ciudad_destino
+                                    FROM rutas
+                                    INNER JOIN ciudades AS origen ON rutas.ciudad_origen = origen.id
+                                    INNER JOIN ciudades AS destino ON rutas.ciudad_destino = destino.id";
+                                
                                 $rutas = $pdo->prepare($select_rutas);
                                 $rutas->execute();
                                 $data_rutas = $rutas->fetchAll(PDO::FETCH_ASSOC);
 
                                 foreach ($data_rutas as $fila){
-                                    echo "<option value='{$fila['id_ruta']}'>{$fila['origen']}, {$fila['destino']}</option>";
+                                    echo "<option value='{$fila['id']}'>{$fila['ciudad_origen']}, {$fila['ciudad_destino']}</option>";
                                 }
                             ?>
 

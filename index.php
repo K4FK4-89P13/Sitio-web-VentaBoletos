@@ -6,7 +6,13 @@
     <title>INICIO</title>
 </head>
 <body>
-    <?php include_once './head.html'  ?>
+    <?php include_once './head.html' ;
+        include_once 'login.php';
+        $query = "SELECT * FROM ciudades";
+        $ciudades = $pdo->prepare($query);
+        $ciudades->execute();
+        $data_ciudad = $ciudades->fetchAll(PDO::FETCH_ASSOC);
+    ?>
     <div class="main">
         
         <div class="container">
@@ -17,16 +23,20 @@
                     <div class="mb-2" aria-placeholder="origen">
                         <label for="origen">Origen: </label>
                         <select name="origen" id="origen">
-                            <option value="Arequipa">Arequipa</option>
-                            <option value="Moquegua">Moquegua</option>
-                            <option value="Tacna">Tacna</option>
+                            <?php
+                                foreach ($data_ciudad as $fila) {
+                                    echo "<option value='{$fila['id']}'>{$fila['nombre']}</option>";
+                                }
+                            ?>
                         </select>
 
                         <label for="destino">Destino: </label>
                         <select name="destino" id="destino">
-                            <option value="Arequipa">Arequipa</option>
-                            <option value="Moquegua">Moquegua</option>
-                            <option value="Tacna">Tacna</option>
+                        <?php
+                                foreach ($data_ciudad as $fila) {
+                                    echo "<option value='{$fila['id']}'>{$fila['nombre']}</option>";
+                                }
+                            ?>
                         </select>
 
                         <label for="fechaInicio">Fecha de salida: </label>

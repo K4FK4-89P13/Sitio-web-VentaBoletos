@@ -32,27 +32,36 @@ require_once './login.php';
                         $destino = $_POST['destino'];
                         $duracion = $_POST['duracion'];
     
-                        $query2 = "INSERT INTO rutas(origen, destino, duracion) VALUES(:origen, :destino, :duracion)";
+                        $query2 = "INSERT INTO rutas(ciudad_origen, ciudad_destino, duracion) VALUES(:origen, :destino, :duracion)";
     
                         $pdo->prepare($query2)->execute([
                             'origen' => $origen,
                             'destino' => $destino,
                             'duracion' => $duracion
                         ]);
-
+                        
+                        header("Location: administrador.php");
                         break;
 
                     case 'buscar_rutas':
 
                         $origen = $_POST['origen'];
                         $destino = $_POST['destino'];
+                        $fecha = $_POST['FSalida'];
 
-                        $query = "SELECT * FROM rutas WHERE :origen = origen AND :destino = destino";
+                        $query = "SELECT rutas.id, origen.nombre AS ciudad_origen, destino.nombre AS ciudad_destino, rutas.duracion,
+                            horarios.hora_salida, horarios.hora_llegada, horarios.fecha
+                        FROM rutas
+                        INNER JOIN ciudades AS origen ON rutas.ciudad_origen = origen.id
+                        INNER JOIN ciudades AS destino ON rutas.ciudad_Destino = destino.id
+                        INNER JOIN horarios ON rutas.id = horarios.fk_ruta
+                        WHERE :origen = ciudad_origen AND :destino = ciudad_destino AND :fecha = horarios.fecha";
 
                         $result = $pdo->prepare($query);
                         $result->execute([
                             'origen' => $origen,
-                            'destino' => $destino
+                            'destino' => $destino,
+                            'fecha' => $fecha
                         ]);
                         $datos = $result->fetchAll(PDO::FETCH_ASSOC);
 
