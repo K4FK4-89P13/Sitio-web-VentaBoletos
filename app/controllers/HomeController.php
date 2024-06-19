@@ -29,4 +29,8 @@ class HomeController extends Controller {
 
         $this->load_view('pages/acceso', ['title' => 'Acceso']);
     }
+
+    public function recuperar() {
+        
+    }
 }
