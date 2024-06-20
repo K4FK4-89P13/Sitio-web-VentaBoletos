@@ -25,11 +25,10 @@
             
             <div class="navbar-nav mr-auto">
                 <a href="http://proyecto.test/login/index" class="nav-link">Registrar</a>
-                <!-- Agrega aquí más enlaces si es necesario -->
             </div>
             <div class="collapse navbar-collapse justify-content-end">
 
-                <?php if (isset($_SESSION['dni'])): ?>
+                <?php if (isset($_SESSION['admin'])): ?>
 
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
@@ -37,7 +36,7 @@
                                 <i class="bi bi-person-circle"></i> <!-- Icono de cuenta -->
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <span class="dropdown-item" >Nombre del Usuario</span> <!-- Aquí puedes poner el nombre del usuario -->
+                                <span class="dropdown-item" ><?= $_SESSION['admin']['nombre']?></span>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="http://proyecto.test/login/logout">Cerrar Sesión</a>
                             </div>

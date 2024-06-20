@@ -2,23 +2,30 @@
 
 class SeatingController extends Controller {
 
-    public function index() {
+    public function showDetails() {
 
-        $seatingModel = $this->load_model('Ciudades');
-        //$seatings = $seatingModel->findRuteByCity();
         $data = [
             'title' => 'Asientos'
         ];
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['origen'])) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $origen = $_POST['origen'];
-            $destino = $_POST['destino'];
-            $fecha = $_POST['FSalida'];
-
-            $result = $seatingModel->findRuteByCity($origen, $destino, $fecha);
-            $data['seatings'] = $result['capacidad'];
+            $routeId = $_POST['route_id'];
         }
+
+        if (isset($_SESSION['route_data'])) {
+
+            foreach ($_SESSION['route_data'] as $value) {
+                
+                if ($value['id_horario'] == $routeId) {
+                    $seatings = $value;
+                    break;
+                }
+            }
+
+            $data['seatings'] = $seatings['capacidad'];
+
+        } else $data['seatings'] = 'No se pudo recuperar datos';
 
         $this->load_view('pages/seating', $data);
     }

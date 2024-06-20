@@ -11,14 +11,9 @@ class HomeController extends Controller {
             'ciudades' => $ciudad
         ];
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['origen'])) {
+        if (!empty($this->consulta())) {
 
-            $origen = $_POST['origen'];
-            $destino = $_POST['destino'];
-            $fecha = $_POST['FSalida'];
-
-            $result = $ciudadModel->findRuteByCity($origen, $destino, $fecha);
-            $data['result'] = $result;
+            $data['result'] = $this->consulta();
         }
 
 
@@ -30,7 +25,20 @@ class HomeController extends Controller {
         $this->load_view('pages/acceso', ['title' => 'Acceso']);
     }
 
-    public function recuperar() {
+    public function consulta() {
+
+        $ciudadModel = $this->load_model('Ciudades');
         
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['origen'])) {
+
+            $origen = $_POST['origen'];
+            $destino = $_POST['destino'];
+            $fecha = $_POST['FSalida'];
+            $result = $ciudadModel->findRuteByCity($origen, $destino, $fecha);
+
+            $_SESSION['route_data'] = $result;
+            
+            return $result;
+        }
     }
 }

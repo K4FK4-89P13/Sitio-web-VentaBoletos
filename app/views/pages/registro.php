@@ -1,6 +1,6 @@
 <?php include_once __DIR__ . '/../inc/header.php' ?>
 
-    
+    <? print_r($_SESSION) ?>
     <div class="container">
         <h2>Administrador</h2>
 

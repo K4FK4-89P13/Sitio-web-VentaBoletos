@@ -53,7 +53,12 @@
                                 <h4>Salida: <?=$fila['hora_salida']?></h4>
                                 <h4>Llegada: <?=$fila['hora_llegada']?></h4>
                                 <h4>Duración: <?=$fila['duracion']?></h4>
-                                <a href="http://proyecto.test/seating/index" class="btn btn-primary">Seleccionar</a>
+                                <h4>Capacidad: <?=$fila['capacidad']?></h4>
+
+                                <form method="POST" action="http://proyecto.test/seating/showDetails">
+                                    <input type="hidden" name="route_id" value="<?= $fila['id_horario']?>">
+                                    <button type="submit" class="btn btn-primary">Seleccionar</button>
+                                </form>
                             </div>
                         </div>
                     <?php }

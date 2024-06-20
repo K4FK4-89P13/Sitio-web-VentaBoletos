@@ -16,6 +16,10 @@ class LoginController extends Controller {
 
     public function login() {
 
+        $data = [
+            'title' => 'Acceso'
+        ];
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dni = $_POST['dni'];
             $password = $_POST['password'];
@@ -23,20 +27,24 @@ class LoginController extends Controller {
             //validar usuario y contraseña
             if ($this->validate_personal($dni, $password)) {
                 
-                $_SESSION['dni'] = $dni;
+                $admin = $this->load_model('Personal')->where($dni, $password);
+                
+                $admin = [
+                    'dni' => $dni,
+                    'nombre' => $admin['nombre']
+                ];
+                
+                $_SESSION['admin'] = $admin;
                 header("Location: http://proyecto.test/login/index");
                 exit();
             } else {
-                $data = [
-                    'error' => 'Usuario o contraseña incorrecta',
-                    'title' => 'Acceso'
-                ];
+                $data['error'] = 'Usuario o contraseña incorrecta';
                 $this->load_view('pages/acceso', $data);
                 return;
             }
         }
 
-        $this->load_view('pages/acceso', ['title' => 'Acceso']);
+        $this->load_view('pages/acceso', $data);
     }
 
     private function validate_personal($username, $password) {
@@ -48,7 +56,7 @@ class LoginController extends Controller {
 
     public function logout() {
 
-        session_start();
+        //session_start();
         session_unset();
         session_destroy();
         header("Location: http:proyecto.test/login/login");
@@ -58,6 +66,6 @@ class LoginController extends Controller {
     private function isloggedIn() {
 
         //session_start();
-        return isset($_SESSION['dni']);
+        return isset($_SESSION['admin']);
     }
 }

@@ -11,7 +11,7 @@ class Ciudades extends Model {
 
     public function findRuteByCity($origen, $destino, $fecha) {
 
-        $query = "SELECT rutas.id, origen.nombre AS ciudad_origen, destino.nombre AS ciudad_destino, rutas.duracion,
+        $query = "SELECT horarios.id_horario, rutas.id, origen.nombre AS ciudad_origen, destino.nombre AS ciudad_destino, rutas.duracion,
                             horarios.hora_salida, horarios.hora_llegada, horarios.fecha, buses.capacidad
                         FROM rutas
                         INNER JOIN ciudades AS origen ON rutas.ciudad_origen = origen.id
