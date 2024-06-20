@@ -4,8 +4,8 @@ class HomeController extends Controller {
 
     public function index() {
 
-        $ciudadModel = $this->load_model('Ciudades');
-        $ciudad = $ciudadModel->get_rutas();
+        $ciudadModel = $this->load_model('Rutas');
+        $ciudad = $ciudadModel->get_ciudades();
         $data = [
             'title' => 'INICIO',
             'ciudades' => $ciudad
@@ -27,7 +27,7 @@ class HomeController extends Controller {
 
     public function consulta() {
 
-        $ciudadModel = $this->load_model('Ciudades');
+        $ciudadModel = $this->load_model('Rutas');
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['origen'])) {
 

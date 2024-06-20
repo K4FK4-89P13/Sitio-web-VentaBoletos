@@ -1,8 +1,8 @@
 <?php
 
-class Ciudades extends Model {
+class Rutas extends Model {
 
-    public function get_rutas() {
+    public function get_ciudades() {
 
         $stmt = $this->db->prepare("SELECT id, nombre FROM ciudades");
         $stmt->execute();
@@ -28,5 +28,9 @@ class Ciudades extends Model {
         ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function set_rutas() {
+        
     }
 }
