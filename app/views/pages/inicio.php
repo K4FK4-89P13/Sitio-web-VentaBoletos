@@ -55,8 +55,8 @@
                                 <h4>Duración: <?=$fila['duracion']?></h4>
                                 <h4>Capacidad: <?=$fila['capacidad']?></h4>
 
-                                <form method="POST" action="http://proyecto.test/seating/showDetails">
-                                    <input type="hidden" name="route_id" value="<?= $fila['id_horario']?>">
+                                <form method="POST" action="http://proyecto.test/seating/index">
+                                    <input type="hidden" name="horario_id" value="<?= $fila['id_horario']?>">
                                     <button type="submit" class="btn btn-primary">Seleccionar</button>
                                 </form>
                             </div>
@@ -65,7 +65,7 @@
 
                  
                 } else echo "<p>No se encontraron rutas</p>";
-            }?>
+            }print_r($_SESSION)?>
         </div>
 
     </div>
