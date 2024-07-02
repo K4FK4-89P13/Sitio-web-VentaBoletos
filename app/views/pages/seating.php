@@ -21,7 +21,7 @@
 <div class="container mt-5">
         <h2>Elige tus asientos</h2>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" id="cambio">
                 <div class="bus">
                     <div class="row">
                         <!-- Example of seats -->
@@ -91,12 +91,34 @@
                 selectedSeats.forEach(seatNumber => {
                     const li = document.createElement('li');
                     li.classList.add('list-group-item');
-                    li.textContent = `Asiento ${seatNumber}`;
+                    li.textContent = `Pasajero ${seatNumber}`;
                     selectedSeatsList.appendChild(li);
                 });
             }
 
+
             document.getElementById('continue').addEventListener('click', () => {
+                // Hacer una solicitud AJAX para cargar el contenido del archivo pasajeros.php
+                /* fetch('http://proyecto.test/Seating/pasajeros')
+                    .then(response => response.text())
+                    .then(html => {
+                        // Reemplazar el contenido del contenedor
+                        document.getElementById('cambio').innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar el contenido de pasajeros:', error);
+                    }); */
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload =function () {
+                    document.getElementById("cambio").innerHTML =this.responseText;
+                }
+                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhttp.open('POST', 'http://proyecto.test/Seating/pasajeros');
+                xhttp.send(`selectedSeats=${selectedSeats}`)
+            });
+
+
+            /* document.getElementById('continue').addEventListener('click', () => {
                 // Submit the selected seats
                 console.log('Selected seats:', selectedSeats);
                 // You can send the selectedSeats array to your server here
@@ -107,7 +129,7 @@
                     },
                     body: JSON.stringify({
                         selectedSeats: selectedSeats,
-                        horarioId: <?= $data['horarioId'] ?>
+                        horarioId: <?//= $data['horarioId'] ?>
                     })
                 })
                 .then(response => response.json())
@@ -122,54 +144,10 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
-            });
+            }); */
         });
     </script>
 
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const seats = document.querySelectorAll('.seat:not(.occupied)');
-            const selectedSeatsList = document.getElementById('selected-seats');
-            let selectedSeats = [];
-
-            //Marcar los asientos ocupados
-            <?php //foreach ($data['asientosOcupados'] as $asiento): ?>
-                const seat = document.querySelector(`.seat[data-seat-number="<?//= $asiento['num_asiento'] ?>"]`);
-                if (seat) {
-                    seat.classList.add('occupied');
-                }
-            <?php //endforeach; ?>
-
-            seats.forEach(seat => {
-                seat.addEventListener('click', () => {
-                    seat.classList.toggle('selected');
-                    const seatNumber = seat.getAttribute('data-seat-number');
-                    if (seat.classList.contains('selected')) {
-                        selectedSeats.push(seatNumber);
-                    } else {
-                        selectedSeats = selectedSeats.filter(s => s !== seatNumber);
-                    }
-                    updateSelectedSeatsList();
-                });
-            });
-
-            function updateSelectedSeatsList() {
-                selectedSeatsList.innerHTML = '';
-                selectedSeats.forEach(seatNumber => {
-                    const li = document.createElement('li');
-                    li.classList.add('list-group-item');
-                    li.textContent = `Asiento ${seatNumber}`;
-                    selectedSeatsList.appendChild(li);
-                });
-            }
-
-            document.getElementById('continue').addEventListener('click', () => {
-                // Submit the selected seats
-                console.log('Selected seats:', selectedSeats);
-                // You can send the selectedSeats array to your server here
-            });
-        });
-    </script> -->
 </div>
 
 <?php include_once  __DIR__ . '/../inc/footer.php' ?>

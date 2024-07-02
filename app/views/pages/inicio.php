@@ -4,7 +4,7 @@
         
         <div class="container mb-5">
 
-            <form action="http://proyecto.test/home/index" method="post">
+            <form >
                 <input type="hidden" name="formulario" value="buscar_rutas">
 
                 <div class="car-body">
@@ -31,13 +31,14 @@
                         <input type="date" name="FSalida" id="FSalida">
                     </div>
                     
-                    <input type="submit" value="Buscar">
+                    <!-- <input type="submit" value="Buscar"> -->
+                     <button type="button" onclick="getRutas()">Buscar</button>
                 </div>
             </form>
         </div>
 
         <!-- resultados de la busqueda -->
-        <div class="container">
+        <div class="container" id="container">
             <?php if (isset($data['result'])){ ?>
                 
                 <h2>Resultados de la Búsqueda</h2>

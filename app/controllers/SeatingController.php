@@ -81,13 +81,13 @@ class SeatingController extends Controller {
     }
 
     public function pasajeros() {
-        $horarioId = $_SESSION['horarioId'];
-        $selectedSeats = $_SESSION['selectedSeats'];
+        //$horarioId = $_SESSION['horarioId'];
+        //$selectedSeats = $_SESSION['selectedSeats'];
 
         $data = [
             'title' => 'Pasajeros',
-            'horarioId' => $horarioId,
-            'selectedSeats' => $selectedSeats
+            //'horarioId' => $horarioId,
+            'selectedSeats' => $_POST['selectedSeats']
         ];
         $this->load_view('pages/pasajeros', $data);
     }

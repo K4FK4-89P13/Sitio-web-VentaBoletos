@@ -1,11 +1,10 @@
-<?php require_once  __DIR__ . '/../inc/header.php' ?>
 
 <div class="container">
 <div id="registrar_pasajero" class="card mb-5">
             <div class="card-body">
 
-                <h2>Formulario de registro</h2>
-                <?php print_r($data)?>
+                <h4>Pasajero</h4>
+                <?php //print_r($data)?>
                 <form action="procesar.php" method="post">
                     <!-- <input type="hidden" name="horarioId" value="<?//= $data['horarioId']?>">
                     <input type="hidden" name="selectedSeats" value="<?//= $data['selectedSeats']?>"> -->
@@ -36,5 +35,3 @@
             </div>
         </div>
 </div>
-
-<?php require_once __DIR__ . '/../inc/footer.php' ?>

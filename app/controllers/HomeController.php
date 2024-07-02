@@ -29,16 +29,18 @@ class HomeController extends Controller {
 
         $ciudadModel = $this->load_model('Rutas');
         
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['origen'])) {
+        if ($_POST) {
 
             $origen = $_POST['origen'];
             $destino = $_POST['destino'];
             $fecha = $_POST['FSalida'];
             $result = $ciudadModel->findRuteByCity($origen, $destino, $fecha);
 
-            $_SESSION['route_data'] = $result;
+            //$_SESSION['route_data'] = $result;
             
-            return $result;
+            header("Content-type: application/json");
+            $result = json_encode($result);
+            echo $result;
         }
     }
 }
