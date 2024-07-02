@@ -91,7 +91,7 @@
                 selectedSeats.forEach(seatNumber => {
                     const li = document.createElement('li');
                     li.classList.add('list-group-item');
-                    li.textContent = `Pasajero ${seatNumber}`;
+                    li.textContent = `Pasajero ${seatNumber}    S/ 50.00`;
                     selectedSeatsList.appendChild(li);
                 });
             }
@@ -111,10 +111,11 @@
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload =function () {
                     document.getElementById("cambio").innerHTML =this.responseText;
+                    document.getElementById("continue").innerText = "Generar Boleto";
                 }
-                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhttp.open('POST', 'http://proyecto.test/Seating/pasajeros');
-                xhttp.send(`selectedSeats=${selectedSeats}`)
+                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhttp.send(`selectedSeats=${selectedSeats.length}`);
             });
 
 
