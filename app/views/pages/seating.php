@@ -91,7 +91,7 @@
                 selectedSeats.forEach(seatNumber => {
                     const li = document.createElement('li');
                     li.classList.add('list-group-item');
-                    li.textContent = `Pasajero ${seatNumber}`;
+                    li.textContent = `Pasajero ${seatNumber}    S/ 50.00`;
                     selectedSeatsList.appendChild(li);
                 });
             }
