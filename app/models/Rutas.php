@@ -16,9 +16,9 @@ class Rutas extends Model {
                         FROM rutas
                         INNER JOIN ciudades AS origen ON rutas.ciudad_origen = origen.id
                         INNER JOIN ciudades AS destino ON rutas.ciudad_Destino = destino.id
-                        INNbuses ON buses.id_bus = horarios.fk_bus
-                        WHERE ciudad_orER JOIN horarios ON rutas.id = horarios.fk_ruta
-                        INNER JOIN igen = ? AND ciudad_destino = ? AND horarios.fecha = ?";
+                        INNER JOIN horarios ON rutas.id = horarios.fk_ruta
+                        INNER JOIN buses ON buses.id_bus = horarios.fk_bus
+                        WHERE ciudad_origen = ? AND ciudad_destino = ? AND horarios.fecha = ?";
         
         $stmt = $this->db->prepare($query);
         $stmt->execute([
