@@ -1,6 +1,6 @@
 
 /* 
-Peticion a Rutas disponibles
+Peticion de Rutas disponibles
 */
 function getRutas() {
     let origen = document.getElementById("origen").value;
@@ -40,3 +40,5 @@ function getRutas() {
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send(`origen=${origen}&destino=${destino}&FSalida=${fechaSalida}`);
 }
+
+

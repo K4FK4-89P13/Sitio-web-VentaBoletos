@@ -1,37 +1,44 @@
 
 <div class="container">
-<div id="registrar_pasajero" class="card mb-5">
-            <div class="card-body">
+    <form id="form_pasajeros">
 
-                <h4>Pasajero</h4>
-                <?php //print_r($data)?>
-                <form action="procesar.php" method="post">
-                    <!-- <input type="hidden" name="horarioId" value="<?//= $data['horarioId']?>">
-                    <input type="hidden" name="selectedSeats" value="<?//= $data['selectedSeats']?>"> -->
+        <input type="hidden" id="horarioId" name="horarioId" value="<?= $_SESSION['horarioId']?>">
+        <input type="hidden" id="numAsientos" value="<?=count($data['selectedSeats'])?>">
+
+        <?php for ($i = 0; $i < count($data['selectedSeats']); $i++) { ?>
+            <div id="registrar_pasajero<?=$i?>" class="card mb-2">
+            
+                <div class="card-body">
+
+                    <h4>Pasajero <?=$i+1?></h4>
+                    <?php //print_r($data); print_r($_SESSION)?>
+                        <input type="hidden" id="asiento[<?=$i?>]" value="<?=$data['selectedSeats'][$i]?>">
 
                     <div class="mb-2">
-                        <label for="nombreCompleto" class="form-label">Nombre completo</label>
-                        <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control">
+                        <label for="nombreCompleto<?=$i?>" class="form-label">Nombre completo</label>
+                        <input type="text" id="nombreCompleto[<?=$i?>]" class="form-control">
                     </div>
 
                     <div class="mb-2">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <label for="email<?=$i?>" class="form-label">Email</label>
+                        <input type="email" id="email[<?=$i?>]" class="form-control">
                     </div>
 
                     <div class="mb-2">
-                        <label for="telefono" class="form-label">Telefono</label>
-                        <input type="tel" name="telefono" id="telefono" class="form-control">
+                        <label for="telefono<?=$i?>" class="form-label">Telefono</label>
+                        <input type="tel" id="telefono[<?=$i?>]" class="form-control">
                     </div>
 
                     <div class="mb-2">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="text" name="dni" id="dni" class="form-control">
+                        <label for="dni<?=$i?>" class="form-label">DNI</label>
+                        <input type="text" id="dni[<?=$i?>]" class="form-control">
                     </div>
 
-                    <input type="submit" value="Registrar" class="btn btn-primary">
-                </form>
-
+                        <!-- <input type="submit" value="Registrar" class="btn btn-primary"> -->
+                        
+                </div>
             </div>
-        </div>
+        <?php } ?>
+                    
+    </form>
 </div>

@@ -97,25 +97,54 @@
             }
 
 
-            document.getElementById('continue').addEventListener('click', () => {
-                // Hacer una solicitud AJAX para cargar el contenido del archivo pasajeros.php
-                /* fetch('http://proyecto.test/Seating/pasajeros')
-                    .then(response => response.text())
-                    .then(html => {
-                        // Reemplazar el contenido del contenedor
-                        document.getElementById('cambio').innerHTML = html;
-                    })
-                    .catch(error => {
-                        console.error('Error al cargar el contenido de pasajeros:', error);
-                    }); */
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload =function () {
-                    document.getElementById("cambio").innerHTML =this.responseText;
+            if ( document.getElementById('continue') ) {
+
+                document.getElementById('continue').addEventListener('click', () => {
+    
+                    // Hacer una solicitud AJAX para cargar el contenido del archivo pasajeros.php
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.onload =function () {
+                        document.getElementById("cambio").innerHTML =this.responseText;
+                        console.log("cambio html");
+                        updateButton();
+                        
+                    }
+                    xhttp.open('POST', 'http://proyecto.test/Seating/pasajeros');
+                    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    xhttp.send(`selectedSeats=${selectedSeats}`);
+    
+    
+    
+                });
+
+            }
+
+            function updateButton() {
+                let btnContinua = document.getElementById('continue');
+                if (btnContinua){
+                    console.log("Existe continue");
+                    
+                    // Cambiar el texto y el ID del botón
+                    let btnContinua = document.getElementById('continue');
+                    btnContinua.innerText = 'Generar boleto';
+                    btnContinua.setAttribute('id', 'continue_boleto');
+
+                    // Eliminar todos los antiguos eventos del botón continue para evitar múltiples eventos
+                    let newBtn = btnContinua.cloneNode(true);
+                    btnContinua.parentNode.replaceChild(newBtn, btnContinua);
+
+                    // Agregar el nuevo evento al botón #continue_boleto
+                    document.getElementById('continue_boleto').addEventListener('click', enviarPasajeros);
+
+                } /* else if ( document.getElementById('continue_boleto') ) {
+                    
+                    console.log("Existe continue_boleto");
+
+                    document.getElementById('continue_boleto').addEventListener('click', enviarPasajeros(event));
+                } */else {
+                    console.error("El botón con id 'continue' no existe en el DOM");
                 }
-                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhttp.open('POST', 'http://proyecto.test/Seating/pasajeros');
-                xhttp.send(`selectedSeats=${selectedSeats}`)
-            });
+            }
 
 
             /* document.getElementById('continue').addEventListener('click', () => {
@@ -145,6 +174,46 @@
                     console.error('Error:', error);
                 });
             }); */
+
+
+            /* 
+            * Enviar datos de pasajeros al servidor
+            */
+            function enviarPasajeros() {
+
+                let cantidad = document.getElementById("numAsientos").value;
+                let form = document.getElementById('form_pasajeros');
+                let formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                data.pasajeros = [];
+                data.asientos = [];
+
+                for (let i = 0; i < cantidad; i++) {
+                    const pasajero = {};
+                    pasajero.nombre = document.getElementById(`nombreCompleto[${i}]`).value;
+                    pasajero.email = document.getElementById(`email[${i}]`).value;
+                    pasajero.telefono = document.getElementById(`telefono[${i}]`).value;
+                    pasajero.dni = document.getElementById(`dni[${i}]`).value;
+
+                    let asiento =document.getElementById(`asiento[${i}]`).value;
+
+                    data.pasajeros.push(pasajero);
+                    data.asientos.push(asiento);
+                }
+
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {'Content-type': 'application/json'},
+                    body: JSON.stringify(data)
+                };
+
+                fetch('url', requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(data))
+
+                //console.log(data);
+            }
         });
     </script>
 

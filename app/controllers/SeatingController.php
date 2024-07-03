@@ -12,6 +12,7 @@ class SeatingController extends Controller {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $horarioId = $_POST['horario_id'];
+            $_SESSION['horarioId'] = $_POST['horario_id'];
         }
 
         $asientosOcupados = $this->asientosReservadosModel->getAsientosByHorarios($horarioId);
@@ -83,11 +84,12 @@ class SeatingController extends Controller {
     public function pasajeros() {
         //$horarioId = $_SESSION['horarioId'];
         //$selectedSeats = $_SESSION['selectedSeats'];
+        $selectedSeats = explode(',', $_POST['selectedSeats']);
 
         $data = [
             'title' => 'Pasajeros',
             //'horarioId' => $horarioId,
-            'selectedSeats' => $_POST['selectedSeats']
+            'selectedSeats' => $selectedSeats
         ];
         $this->load_view('pages/pasajeros', $data);
     }
