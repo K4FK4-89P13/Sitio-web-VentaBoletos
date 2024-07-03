@@ -202,17 +202,24 @@
                     data.asientos.push(asiento);
                 }
 
+                console.log(data);
+
                 const requestOptions = {
                     method: 'POST',
                     headers: {'Content-type': 'application/json'},
                     body: JSON.stringify(data)
                 };
 
-                fetch('url', requestOptions)
+                fetch('http://proyecto.test/Ticket/index', requestOptions)
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    console.log('succes:', data);
+                    if ( data.status == 'succes' ) {
+                        window.location.href = 'http://proyecto.test/Ticket/boleto';
+                    }
 
-                //console.log(data);
+                })
+
             }
         });
     </script>
