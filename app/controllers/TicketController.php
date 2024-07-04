@@ -23,13 +23,13 @@ class TicketController extends Controller {
 
             //registrar boleto
             $boletosModel = $this->load_model('Boletos');
-            $result = $boletosModel->insertBoleto($pasajeroIds, $datos['horarioId'], $datos['asientos']);
+            $IdsBoleto = $boletosModel->insertBoleto($pasajeroIds, $datos['horarioId'], $datos['asientos']);
 
 
             $data = [
                 'title' => 'Boleta',
                 'pasajeroIds' => $pasajeroIds,
-                'resultado' => $result
+                'IdsBoleto' => $IdsBoleto
             ];
 
             $_SESSION['dataBoletos'] = $data;
