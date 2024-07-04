@@ -18,18 +18,22 @@ class TicketController extends Controller {
             //resgistrar asientos
             $asientoModel = $this->load_model('AsientosReservados');
             for ($i=0; $i < count($datos['asientos']); $i++) { 
-                $resultado = $asientoModel->reservarAsiento($datos['horarioId'], $datos['asientos'][$i]);
+                $resultado = $asientoModel->reservarAsiento($datos['horarioId'][0], $datos['asientos'][$i]);
             }
 
             //registrar boleto
             $boletosModel = $this->load_model('Boletos');
             $IdsBoleto = $boletosModel->insertBoleto($pasajeroIds, $datos['horarioId'], $datos['asientos']);
 
+            //Consultando a ultimos boletos registrados
+            $boletoGenerado = $boletosModel->getInsertAll($IdsBoleto);
+
 
             $data = [
-                'title' => 'Boleta',
+                'title' => 'Boleto',
                 'pasajeroIds' => $pasajeroIds,
-                'IdsBoleto' => $IdsBoleto
+                'IdsBoleto' => $IdsBoleto,
+                'boletoGenerado' => $boletoGenerado
             ];
 
             $_SESSION['dataBoletos'] = $data;
