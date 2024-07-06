@@ -8,13 +8,13 @@ class Boletos extends Model {
         for ($i=0; $i < count($asientos); $i++) { 
             $stmt = $this->db->prepare($sql);
             if ($stmt->execute([$pasajeroID[$i], $horarioId, $asientos[$i]])) {
-                $lasIdsBoleto[] = $this->db->lastInsertId();
+                $lastIdsBoleto[] = $this->db->lastInsertId();
             } else {
                 $errorInfo = $stmt->errorInfo();
                 die("Error en la consulta SQL boletos: " . $errorInfo[2]);
             }
         }
-        return $lasIdsBoleto;
+        return $lastIdsBoleto;
 
     }
 
@@ -34,10 +34,10 @@ class Boletos extends Model {
         FROM boletos
         INNER JOIN pasajeros ON fk_pasajero = pasajeros.id_pasajero
         INNER JOIN horarios ON fk_horario = horarios.id_horario
-        WHERE id_boleto IN (?)";
+        WHERE id_boleto IN ($idsString)";
 
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$idsString]);
+        $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

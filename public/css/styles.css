@@ -2,3 +2,20 @@
     right: 0; /* Asegura que el menú se alinee correctamente */
     left: auto; /* Desactiva el valor izquierdo para prevenir desbordamiento */
 }
+
+/* 
+ *Estilos para la vista boleto.php
+*/
+    .ticket {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    p {
+        margin: 5px 0;
+    }

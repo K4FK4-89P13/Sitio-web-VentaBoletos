@@ -11,19 +11,23 @@ class TicketController extends Controller {
             $json = file_get_contents('php://input');   
             $datos = json_decode($json, true);
 
+            $horarioId = $datos['horarioId'];
+            $pasajeros = $datos['pasajeros'];
+            $asientos = $datos['asientos'];
+
             //Registrar pasajeros
             $pasajerosModel = $this->load_model('Pasajeros');
-            $pasajeroIds = $pasajerosModel->insertPasajero($datos['pasajeros']);
+            $pasajeroIds = $pasajerosModel->insertPasajero($pasajeros);
 
             //resgistrar asientos
             $asientoModel = $this->load_model('AsientosReservados');
-            for ($i=0; $i < count($datos['asientos']); $i++) { 
-                $resultado = $asientoModel->reservarAsiento($datos['horarioId'][0], $datos['asientos'][$i]);
+            for ($i=0; $i < count($asientos); $i++) { 
+                $resultado = $asientoModel->reservarAsiento($horarioId[0], $asientos[$i]);
             }
 
             //registrar boleto
             $boletosModel = $this->load_model('Boletos');
-            $IdsBoleto = $boletosModel->insertBoleto($pasajeroIds, $datos['horarioId'], $datos['asientos']);
+            $IdsBoleto = $boletosModel->insertBoleto($pasajeroIds, $horarioId[0], $asientos);
 
             //Consultando a ultimos boletos registrados
             $boletoGenerado = $boletosModel->getInsertAll($IdsBoleto);
