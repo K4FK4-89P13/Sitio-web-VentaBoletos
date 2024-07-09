@@ -2,71 +2,52 @@
     
     <div class="main">
         
-        <div class="container mb-5">
+        <div class="container mt-4 mb-4">
 
-            <form >
-                <input type="hidden" name="formulario" value="buscar_rutas">
+            <div class="alert alert-danger mt-3 d-none" id="wRutas">
+                <span id="msgWRutas">La ciudad origen y destino no pueden ser iguales</span>
+            </div>
+                <div class="w-50 mx-auto">
+                    <form class="row">
+                        <input type="hidden" name="formulario" value="buscar_rutas">
 
-                <div class="car-body">
-                    <div class="mb-2" aria-placeholder="origen">
-                        <label for="origen">Origen: </label>
-                        <select name="origen" id="origen">
-                            <?php
-                                foreach ($data['ciudades'] as $ciudad) {
-                                    echo "<option value='{$ciudad['id']}'> {$ciudad['nombre']} </option>";
-                                }
-                            ?>
-                        </select>
+                            <div class="col">
+                                <label for="origen" class="form-label">Origen: </label>
+                                <select name="origen" id="origen" class="form-control">
+                                    <?php
+                                        foreach ($data['ciudades'] as $ciudad) {
+                                            echo "<option value='{$ciudad['id']}'> {$ciudad['nombre']} </option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
 
-                        <label for="destino">Destino: </label>
-                        <select name="destino" id="destino">
-                        <?php
-                                foreach ($data['ciudades'] as $ciudad) {
-                                    echo "<option value='{$ciudad['id']}'> {$ciudad['nombre']} </option>";
-                                }
-                            ?>
-                        </select>
+                            <div class="col">
+                                <label for="destino" class="form-label">Destino: </label>
+                                <select name="destino" id="destino" class="form-control">
+                                    <?php
+                                        foreach ($data['ciudades'] as $ciudad) {
+                                            echo "<option value='{$ciudad['id']}'> {$ciudad['nombre']} </option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
 
-                        <label for="FSalida">Fecha de salida: </label>
-                        <input type="date" name="FSalida" id="FSalida">
-                    </div>
-                    
-                    <!-- <input type="submit" value="Buscar"> -->
-                     <button type="button" onclick="getRutas()">Buscar</button>
+                            <div class="col">
+                                <label for="FSalida" class="form-label">Fecha de salida: </label>
+                                <input type="date" name="FSalida" id="FSalida" class="form-control">
+                            </div>
+
+                            <div class="col align-self-end">
+                                <button type="button" class="btn secondary" onclick="getRutas()">Buscar</button>
+                            </div>
+                                
+                    </form>
                 </div>
-            </form>
         </div>
 
         <!-- resultados de la busqueda -->
-        <div class="container" id="container">
-            <?php if (isset($data['result'])){ ?>
-                
-                <h2>Resultados de la Búsqueda</h2>
-                <?php if (!empty($data['result'])) { ?>
-                    
-                    <?php foreach ($data['result'] as $fila) { ?>
-            
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <h4>Origen: <?=$fila['ciudad_origen']?></h4>
-                                <h4>Destino: <?=$fila['ciudad_destino']?></h4>
-                                <h4>Fecha: <?=$fila['fecha']?></h4>
-                                <h4>Salida: <?=$fila['hora_salida']?></h4>
-                                <h4>Llegada: <?=$fila['hora_llegada']?></h4>
-                                <h4>Duración: <?=$fila['duracion']?></h4>
-                                <h4>Capacidad: <?=$fila['capacidad']?></h4>
-
-                                <form method="POST" action="http://proyecto.test/seating/index">
-                                    <input type="hidden" name="horario_id" value="<?= $fila['id_horario']?>">
-                                    <button type="submit" class="btn btn-primary">Seleccionar</button>
-                                </form>
-                            </div>
-                        </div>
-                    <?php }
-
-                 
-                } else echo "<p>No se encontraron rutas</p>";
-            }print_r($_SESSION)?>
+        <div class="container w-50" id="container">
         </div>
 
     </div>

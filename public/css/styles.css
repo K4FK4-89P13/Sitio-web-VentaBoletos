@@ -1,3 +1,48 @@
+/* 
+* Estilo personalizados
+*/
+.major{
+    background-color: #d8eefe !important;
+}
+.major .nav-link,
+.major .navbar-brand {
+    color: #094067 !important;
+}
+.secondary{
+    background-color: #3da9fc !important;
+    color: #fffffe !important;
+}
+.badge.bg-badge{
+    background-color: #ef4565;
+    color: #fffffe;
+}
+
+.border.bg-border{
+    border: 2px solid #094067 !important;
+}
+.bottom.bg-border{
+    border-bottom: 2px solid #094067 !important;
+}
+
+.bus.bg-bus{
+    background-color: #d8eefe;
+    color: #094067;
+    font-weight: bold;
+}
+
+.btn {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.btn:hover{
+    box-shadow: 0px 0px 2px #000;
+}
+.table thead tr{
+    border-bottom: 3px solid #000 !important;
+    border-top: 3px solid #000 !important;
+    background-color: #d8eefe !important;
+}
+
 .dropdown-menu {
     right: 0; /* Asegura que el menú se alinee correctamente */
     left: auto; /* Desactiva el valor izquierdo para prevenir desbordamiento */

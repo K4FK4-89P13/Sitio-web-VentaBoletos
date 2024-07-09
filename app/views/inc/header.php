@@ -17,16 +17,16 @@
 <body>
     <!-- contenido -->
 
- <div class="container">
+ <div class="container-fluid major py-1">
 
-    <div class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+    <div class="navbar navbar-expand-lg w-50 mx-auto my-2">
+        <div class="container-fluid align-content-center">
             <a href="http://proyecto.test" class="navbar-brand">HOME</a>
             
-            <div class="navbar-nav mr-auto">
-                <a href="http://proyecto.test/login/index" class="nav-link">Registrar</a>
-            </div>
             <div class="collapse navbar-collapse justify-content-end">
+                <div class="navbar-nav mr-auto">
+                    <a href="http://proyecto.test/login/index" class="nav-link">Registrar</a>
+                </div>
 
                 <?php if (isset($_SESSION['admin'])): ?>
 

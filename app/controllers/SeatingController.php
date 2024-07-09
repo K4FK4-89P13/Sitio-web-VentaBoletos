@@ -9,19 +9,32 @@ class SeatingController extends Controller {
     
     public function index() {
 
+        
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            /* $datos = file_get_contents('php://input');
+            $datos = json_decode($datos, true); */
+            $jsonRutas = $_POST['arrayRutas'];
+            $datos = json_decode($jsonRutas, true);
 
-            $horarioId = $_POST['horario_id'];
-            $_SESSION['horarioId'] = $_POST['horario_id'];
+            if ($datos !== null) {
+                $asientosOcupados = $this->asientosReservadosModel->getAsientosByHorarios($datos['id_horario']);
+                $data = [
+                    'title' => 'Asientos',
+                    'asientosOcupados' => $asientosOcupados,
+                    //'horarioId' => $horarioId,
+                    'datos' => $datos
+                ];
+                $this->load_view('pages/seating', $data);
+            } else {
+
+                echo "Error: No se pudieron decodificar los datos JSON";
+            }
+
+            /* $horarioId = $_POST['horario_id'];
+            $_SESSION['horarioId'] = $_POST['horario_id']; */
         }
 
-        $asientosOcupados = $this->asientosReservadosModel->getAsientosByHorarios($horarioId);
-        $data = [
-            'title' => 'Asientos',
-            'asientosOcupados' => $asientosOcupados,
-            'horarioId' => $horarioId
-        ];
-        $this->load_view('pages/seating', $data);
+        
     }
 
     public function selectSeats() {
