@@ -1,6 +1,6 @@
 <?php require_once  __DIR__ . '/../inc/header.php' ?>
     
-    <div class="main">
+    <div class="content">
         
         <div class="container mt-4 mb-4">
 

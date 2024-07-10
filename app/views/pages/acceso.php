@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/../inc/header.php' ?>
     
     <div class="container">
-        <div class="card">
+        <div class="card w-50 mx-auto mt-5">
 
             <div class="card-body">
                 <h2>Iniciar Sesión</h2>
@@ -29,8 +29,9 @@
                             </div>
                         _END;
                     } ?>
-            </div>
+                </div>
 
+            </div>
         </div>
     </div>
 

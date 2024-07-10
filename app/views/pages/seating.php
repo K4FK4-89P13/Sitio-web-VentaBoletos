@@ -133,7 +133,7 @@
         </div>
     </div>
 </div>
-<?php print_r($data); echo "<br>"; print_r($data['datos']) ?>
+<?php //print_r($data); echo "<br>"; print_r($data['datos']) ?>
 
 <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -225,49 +225,13 @@
                     // Agregar el nuevo evento al botón #continue_boleto
                     document.getElementById('continue_boleto').addEventListener('click', enviarPasajeros);
 
-                } /* else if ( document.getElementById('continue_boleto') ) {
-                    
-                    console.log("Existe continue_boleto");
-
-                    document.getElementById('continue_boleto').addEventListener('click', enviarPasajeros(event));
-                } */else {
+                }else {
                     console.error("El botón con id 'continue' no existe en el DOM");
                 }
             }
 
 
-            /* document.getElementById('continue').addEventListener('click', () => {
-                // Submit the selected seats
-                console.log('Selected seats:', selectedSeats);
-                // You can send the selectedSeats array to your server here
-                fetch('http://proyecto.test/Seating/selectSeats', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        selectedSeats: selectedSeats,
-                        horarioId: <?//= $data['horarioId'] ?>
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle success response
-                    console.log('Success:', data);
-                    // Redirect or update the page as needed
-                    if (data.status == 'success') {
-                        window.location.href = 'http://proyecto.test/seating/pasajeros';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            }); */
-
-
-            /* 
-            * Enviar datos de pasajeros al servidor
-            */
+            
             function enviarPasajeros() {
 
                 let cantidad = document.getElementById("numAsientos").value;

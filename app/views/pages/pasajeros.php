@@ -2,7 +2,7 @@
 <div class="container">
     <form id="form_pasajeros">
 
-        <input type="hidden" id="horarioId" name="horarioId" value="<?= $_SESSION['horarioId']?>">
+        <input type="hidden" id="horarioId" name="horarioId" value="<?//= $_SESSION['horarioId']?>">
         <input type="hidden" id="numAsientos" value="<?=count($data['selectedSeats'])?>">
 
         <?php for ($i = 0; $i < count($data['selectedSeats']); $i++) { ?>

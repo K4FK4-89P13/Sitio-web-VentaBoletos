@@ -17,37 +17,39 @@
 <body>
     <!-- contenido -->
 
- <div class="container-fluid major py-1">
+<div class="content">
 
-    <div class="navbar navbar-expand-lg w-50 mx-auto my-2">
-        <div class="container-fluid align-content-center">
-            <a href="http://proyecto.test" class="navbar-brand">HOME</a>
-            
-            <div class="collapse navbar-collapse justify-content-end">
-                <div class="navbar-nav mr-auto">
-                    <a href="http://proyecto.test/login/index" class="nav-link">Registrar</a>
-                </div>
+    <div class="container-fluid major py-1">
 
-                <?php if (isset($_SESSION['admin'])): ?>
-
-                    <div class="navbar-nav ml-auto">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-person-circle"></i> <!-- Icono de cuenta -->
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <span class="dropdown-item" ><?= $_SESSION['admin']['nombre']?></span>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="http://proyecto.test/login/logout">Cerrar Sesión</a>
-                            </div>
-                        </div>
+        <div class="navbar navbar-expand-lg w-50 mx-auto my-2">
+            <div class="container-fluid align-content-center">
+                <a href="http://proyecto.test" class="navbar-brand">HOME</a>
+                
+                <div class="collapse navbar-collapse justify-content-end">
+                    <div class="navbar-nav mr-auto">
+                        <a href="http://proyecto.test/login/index" class="nav-link">Registrar</a>
                     </div>
 
-                <?php endif; ?>
+                    <?php if (isset($_SESSION['admin'])): ?>
 
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-person-circle"></i> <!-- Icono de cuenta -->
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <span class="dropdown-item-text" ><?= $_SESSION['admin']['nombre']?></span>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="http://proyecto.test/login/logout">Cerrar Sesión</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endif; ?>
+
+                </div>
             </div>
         </div>
+
     </div>
 
-
- </div>

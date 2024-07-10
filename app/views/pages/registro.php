@@ -280,7 +280,11 @@
     </div>
     </div>
 
-    <script>
+    
+
+<?php include_once __DIR__ . '/../inc/footer.php' ?>
+
+<script>
 
         window.addEventListener("DOMContentLoaded", cargarRutas);
         function cargarRutas() {
@@ -558,8 +562,8 @@
             let msg =document.getElementById('msgWarningHorario');
 
             if (fecha == '' || hora_salida == '') {
-                div.classList.remove('d.none');
-                div.classList.add('d-block');
+                div.classList.remove('d-none', 'alert-success');
+                div.classList.add('d-block', 'alert-danger');
             }else{
 
                 const formData = new FormData();
@@ -610,5 +614,3 @@
             xhttp.send();
         }
     </script>
-
-<?php include_once __DIR__ . '/../inc/footer.php' ?>
